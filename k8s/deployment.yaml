@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-webapp
+  labels:
+    app: devops-webapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: devops-webapp
+  template:
+    metadata:
+      labels:
+        app: devops-webapp
+    spec:
+      containers:
+      - name: webapp
+        image: YOUR_DOCKERHUB_USERNAME/devops-webapp:v1.0.0
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "128Mi"
+            cpu: "200m"
