@@ -42,6 +42,16 @@ pipeline {
                 }
             }
         }
+
+        stage('Trigger ManifestUpdate') {
+            steps{
+                script{
+                    echo "triggering updatemanifestjob"
+                    build job: 'updatemanifest', parameters: [string(name: 'DOCKERTAG', value: env.IMAGE_TAG)]
+                }
+            }
+        }
+
     }
     
     post {
